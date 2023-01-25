@@ -1,10 +1,11 @@
-import UseEffect from './components/useEffect/UseEffect'
-import './App.css'
+import UseEffect from './components/useEffect/UseEffect';
+import Memo from './components/useMemo/Memo';
+import UseMemo from './components/useMemo/UseMemo';
 
 const App: React.FC = () => {
   return (
     <div>
-      <UseEffect></UseEffect>
+      <UseMemo></UseMemo>
     </div>
   )
 }
