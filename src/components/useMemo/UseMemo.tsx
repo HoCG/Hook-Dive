@@ -10,12 +10,6 @@ type userType = {
 }
 
 const UseMemo = () => {
-  const [newUser, setNewUser] = useState<userType>({
-    id: 0,
-    name: '',
-    age: 0,
-    job: ''
-  });
   const [users, setUsers] = useState<userType[]>([
     {
       id: 0,
@@ -39,7 +33,13 @@ const UseMemo = () => {
       job: 'programmer'
     }
   ]);
-  //
+  const [newUser, setNewUser] = useState<userType>({
+    id: 0,
+    name: '',
+    age: 0,
+    job: ''
+  });
+  //이렇게 useMemo를 적용시켜서 값을 계산해야하는 상황을 한정적으로 users라는 값이 변할때에만 바뀌도록 설정할 수 있다.
   const userCount = useMemo(() => users.length, [users]);
   const handleChangeNewUser = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewUser({
