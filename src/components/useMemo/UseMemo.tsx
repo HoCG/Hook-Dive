@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useRef, useState } from 'react';
 import styled from 'styled-components';
 import TableElement from './TableElement';
 
@@ -39,23 +39,27 @@ const UseMemo = () => {
     age: 0,
     job: ''
   });
+  //주의!! 이렇게 input으로 값의 변화를 계속 인지해야할때는 그냥 useRef를 쓰는게 좋다. 왜냐하면 useState의 값이 변할때마다 계속해서 리렌더링이 일어나기 때문이다.
+  //useRef의 경우는 리렌더링이 일어나지도 않기때문에 훨씬 효율적으로 input값을 관리할 수 있다.
+  const nameRef = useRef();
+  const ageRef = useRef();
+  const jobRef = useRef();
   //이렇게 useMemo를 적용시켜서 값을 계산해야하는 상황을 한정적으로 users라는 값이 변할때에만 바뀌도록 설정할 수 있다.
   const userCount = useMemo(() => users.length, [users]);
-  const handleChangeNewUser = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNewUser({
-      ...newUser,
-      [e.target.name]: e.target.value,
-    });
-  };
   const addUser = () => {
-    setUsers([...users, newUser])
-  }
+    setUsers([...users, {
+      id: users.length,
+      name: nameRef.current.value,
+      age: ageRef.current.value,
+      job: jobRef.current.value
+    }]);
+  };
   return (
     <UseMemoContainer>
       <UserCreateForm>
-        <input name='name' onChange={handleChangeNewUser}/>
-        <input name='age' type='number' onChange={handleChangeNewUser}/>
-        <input name='job' onChange={handleChangeNewUser}/>
+        <input name='name' ref={nameRef}/>
+        <input name='age' ref={ageRef} type='number'/>
+        <input name='job' ref={jobRef}/>
         <button onClick={addUser}>등록</button>
       </UserCreateForm>
       <table border={1}>

@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from 'react';
+import React, { useReducer, useState, useRef } from 'react';
 import styled from 'styled-components';
 import TableElement from './TableElement';
 
@@ -57,25 +57,21 @@ const reducer = (state: userType[], action: any): userType[] => {
 const UseReducer: React.FC = () => {
   //우리가 유저배열이 있는데 이값을 변화시켜주기 setter를 불러와 사용해야 할때가 있다.
   //근데 값이 바뀌어야 할때마다 계속 set~~~이걸 해준다? 무척 비효율적이다. 바로 이러한 상황을 방지하고자, useReducer를 사용하는거다. 자, 각설하고 한번 써보도록 하자.
-  const [newUser, setNewUser] = useState<userType>({
-    id: 23,
-    name: '',
-    age: 0,
-    job: ''
-  });
   //useReducer는 dispatch를 통해 상태를 변화시킨다.
   const [users, dispatch] = useReducer(reducer, initialUser);
-  const handleChangeNewUser = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNewUser({
-      ...newUser,
-      [e.target.name]: e.target.value,
-    });
-  };
+  const nameRef = useRef();
+  const ageRef = useRef();
+  const jobRef = useRef();
   const addUser = () => {
     //이렇게 dispatch에 대한 타입과 전달돼야하는 payload값을 정의하자.
     dispatch({
       type: "ADD",
-      user: newUser
+      user: {
+        id: users.length,
+        name: nameRef.current.value,
+        age: ageRef.current.value,
+        job: jobRef.current.value
+      }
     });
   };
   const deleteUser = (user: userType) => {
@@ -87,9 +83,9 @@ const UseReducer: React.FC = () => {
   return (
     <UseReducerContainer>
       <UserCreateForm>
-        <input name='name' onChange={handleChangeNewUser}/>
-        <input name='age' type='number' onChange={handleChangeNewUser}/>
-        <input name='job' onChange={handleChangeNewUser}/>
+        <input name='name' ref={nameRef}/>
+        <input name='age' ref={ageRef} type='number'/>
+        <input name='job' ref={jobRef}/>
         <button onClick={addUser}>등록</button>
       </UserCreateForm>
       <table border={1}>

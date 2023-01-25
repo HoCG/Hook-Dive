@@ -7,7 +7,7 @@ import UseCallback from './components/useCallback/UseCallback';
 const App: React.FC = () => {
   return (
     <div>
-      <UseCallback></UseCallback>
+      <UseReducer></UseReducer>
     </div>
   )
 }
