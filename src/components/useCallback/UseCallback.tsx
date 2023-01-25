@@ -10,11 +10,6 @@ type userInfoType = {
 
 const UseCallback: React.FC = () => {
   const [count, setCount] = useState<number>(0);
-  let user: userInfoType = {
-    name: '',
-    age: 0,
-    phoneNumber: ''
-  };
   const [userInfo, setUserInfo] = useState<userInfoType>({
     name: '',
     age: 0,
@@ -26,34 +21,30 @@ const UseCallback: React.FC = () => {
   const handleOnClickDecrement = () => {
     setCount(count - 1);
   }
-  const handleOnClickUserInfoUpdate = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUserInfo({...user, [e.target.name]: e.target.value});
-  }
   const handleSetUser = () => {
-    setUserInfo(user);
-    console.log(userInfo);
+    setUserInfo({
+      name: `호시지 ${count}`,
+      age: 23,
+      phoneNumber: '010-3746-2424'
+    });
+    fetchJoke();
   }
   const [jokes, setJokes] = useState<string>('');
+  //짜잔 이렇게 userInfo의 값이 바뀔때마다 해당 함수가 실행된다.
   const fetchJoke = useCallback(() => 
     getJokes()
     .then(res => {
       setJokes(res.data.value);
     }), [userInfo]);
-  useEffect(() => {
-    fetchJoke();
-  }, []);
   return (
     <UseCallbackContainer>
       <ShowJokes>{ jokes }</ShowJokes>
       <SetUserInfoBox>
-        <input onChange={handleOnClickUserInfoUpdate} type="text" name='name'/>
-        <input onChange={handleOnClickUserInfoUpdate} type="number" name='age'/>
-        <input onChange={handleOnClickUserInfoUpdate} type="text" name='phoneNumber'/>
         <UpdateUserButton onClick={handleSetUser}>유저정보 수정</UpdateUserButton>
       </SetUserInfoBox>
       <SetCounter>
         <DefaultButton onClick={handleOnClickIncrement}>+</DefaultButton>
-        <h1>{count}</h1>
+        <h1>{ count }</h1>
         <DefaultButton onClick={handleOnClickDecrement}>-</DefaultButton>
       </SetCounter>
     </UseCallbackContainer>
