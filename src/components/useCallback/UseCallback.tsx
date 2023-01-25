@@ -41,6 +41,9 @@ const UseCallback: React.FC = () => {
       <ShowJokes>{ jokes }</ShowJokes>
       <SetUserInfoBox>
         <UpdateUserButton onClick={handleSetUser}>유저정보 수정</UpdateUserButton>
+        <h1>{userInfo.name}</h1>
+        <h1>{userInfo.age}</h1>
+        <h1>{userInfo.phoneNumber}</h1>
       </SetUserInfoBox>
       <SetCounter>
         <DefaultButton onClick={handleOnClickIncrement}>+</DefaultButton>
@@ -69,6 +72,8 @@ const SetUserInfoBox = styled.div`
 width: 30rem;
 height: 20rem;
 background-color: purple;
+display: grid;
+place-items: center;
 `;
 
 const SetCounter = styled.div`
