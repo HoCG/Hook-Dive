@@ -28,6 +28,8 @@ useCallback도 useMemo와 비슷하다. 특정값이 변한다면 useCallback내
 
 ## useRef
 
+기록을 안남기면 무조건 후회할거같아서 미리 작성해본다. input값을 change를 통해 setState의 동작을 기반으로 감지하는건 매우매우 비효율적인 행동이다. 계속해서 리렌더링을 반복하기 때문에 애플리케이션 성능을 상당히 저하시킬 수 있다. 이러한 단점을 극복하고자 useRef를 사용한다. useRef를 사용해 DOM접근시 리렌더링을 하지않는다. 
+
 ## useContext
 
 ## useQuery
