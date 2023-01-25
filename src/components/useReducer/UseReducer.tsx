@@ -33,6 +33,7 @@ const initialUser = [
   }
 ]
 
+//이렇게 스테이트들에 대한 action들을 정의한다. 각 액션에는 reducer를 거치며 반환되는 스테이트 값도 정의해주자.
 const reducer = (state: userType[], action: any): userType[] => {
   switch (action.type) {
     case 'ADD':
@@ -62,6 +63,7 @@ const UseReducer: React.FC = () => {
     age: 0,
     job: ''
   });
+  //useReducer는 dispatch를 통해 상태를 변화시킨다.
   const [users, dispatch] = useReducer(reducer, initialUser);
   const handleChangeNewUser = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewUser({
@@ -70,6 +72,7 @@ const UseReducer: React.FC = () => {
     });
   };
   const addUser = () => {
+    //이렇게 dispatch에 대한 타입과 전달돼야하는 payload값을 정의하자.
     dispatch({
       type: "ADD",
       user: newUser
