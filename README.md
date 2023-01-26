@@ -74,7 +74,14 @@ useCallback도 useMemo와 비슷하다. 특정값이 변한다면 useCallback내
 
 ## useRef
 
-기록을 안남기면 무조건 후회할거같아서 미리 작성해본다. input값을 change를 통해 setState의 동작을 기반으로 감지하는건 매우매우 비효율적인 행동이다. 계속해서 리렌더링을 반복하기 때문에 애플리케이션 성능을 상당히 저하시킬 수 있다. 이러한 단점을 극복하고자 useRef를 사용한다. useRef를 사용해 DOM접근시 리렌더링을 하지않는다. 
+useRef는 가변해야하는 값을 계속 담고 있어야할때 사용하면 유용하다. 대표적인 예시는 바로 setInterval을 사용할때이다. useEffect내에 setInterval을 쓰고 setState를 통해 상태를 계속 변경해주길 원한다고 치자. 허나 이러한 방식은 정상적으로 동작하지 않는다. 이유가 뭘까? useEffect가 계속해서 state의 초기값을 기억하고 있기 때문이다. 따라서 이러한 경우에 useRef를 사용해 값이 변하고 있다는걸 인지해주게 설정하면 setInterval을 정상동작 시킬 수 있다.
+
+useRef는 다른방식으로도 사용할 수 있다. 바로 DOM 접근을 해야할때인데 예시를 들어보겠다. input값을 change를 통해 setState의 동작을 기반으로 감지하는건 매우매우 비효율적인 행동이다. 계속해서 리렌더링을 반복하기 때문에 애플리케이션 성능을 상당히 저하시킬 수 있다. 이러한 단점을 극복하고자 useRef를 사용한다. useRef를 사용해 DOM접근시 리렌더링을 하지않는다. 
+
+혹은 리렌더링을 발생시키지 않는 변수를 만들어야 할 때 사용하면 유용하다. 이때 우리는 한가지 의문을 가질 수 있다.
+  const userData = 3;
+  const userRefData = useRef(3);
+이 두개가 무슨차이일까?
 
 ## useContext
 

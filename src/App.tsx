@@ -5,10 +5,12 @@ import UseReducer from './components/useReducer/UseReducer';
 import UseCallback from './components/useCallback/UseCallback';
 import UseState from './components/useState/UseState';
 import UseRef from './components/useRef/UseRef';
+import UseRefForSetData from './components/useRef/UseRefForSetData';
+import UseInterval from './components/useRef/UseInterval';
 const App: React.FC = () => {
   return (
     <div>
-      <UseRef></UseRef>
+      <UseInterval></UseInterval>
     </div>
   )
 }
