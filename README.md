@@ -4,6 +4,8 @@
 
 ## 훅이란
 
+Hook은 함수 컴포넌트에서 React state와 생명주기 기능(lifecycle features)을 “연동(hook into)“할 수 있게 해주는 함수다. 
+
 ## useState
 
 useState의 setState를 함수형으로 선언하는것과 그냥 선언하는건 어떤 차이가 있을까?
