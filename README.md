@@ -87,6 +87,12 @@ useRef는 다른방식으로도 사용할 수 있다. 바로 DOM 접근을 해�
 
 ## useContext
 
+## useLayoutEffect
+
+## useImperativeHandle
+
+## useDebugValue
+
 ## useQuery
 
 ## useMutation
