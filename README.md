@@ -50,14 +50,14 @@ useMemo가 리렌더링으로부터 자유롭다는 특성은 활용요소가 �
     
 이건 결과가 어찌될까? 또 false다 왜 그럴까? 자바스크립트는 A = B; B = C; A === C; 이런식으로 비교하는게 아니라면 객체는 무조건 다른 값이다라고 생각한다. 따라서 darkMode의 상태가 변할때마다 person이 새롭게 정의되고 person이라는 값이 아무리 기존값과 동일하다지만 위에 특성때문에 person === person은 false를 뱉게 되는거다. 이때 useMemo를 사용하는 것이다.
 
-  const person = useMemo(() => {
-    return { age, name }
-    }, [age, name]
-  );
-  useEffect(() => {
-    console.log(person);
-  }, [person]);
-   
+      const person = useMemo(() => {
+        return { age, name }
+        }, [age, name]
+      );
+      useEffect(() => {
+        console.log(person);
+      }, [person]);
+
 위와 같이 person을 정의하게 된다면 어떻게 될까? 메모리상에 person이라는 정보를 계속 담고있기 때문에 아무리 다크모드의 상태가 변해서 리렌더링이 된다한들, 메모리상에 담겨있는 person이라는 정보는 바뀌지 않는 것이다. 리렌더링으로 인해 굳이 실행되지않아도 될 useEffect의 사용을 줄일 수 있는 것이다.
     
 자 그리고 memo도 한번 알아보자. 우리가 일반적으로 생각해봤을때 자식 컴포넌트의 리렌더링이 일어난다면 부모는 당연히 리렌더링이 발생하지 않는다. 그러나 부모가 리렌더링이 발생시 자식도 리렌더링이 발생하게 되는데 특정상황에서 자식과 부모가 독립적으로 렌더가 되길 바란다면 이는 비효율적인 방식이라고 결론이 난다. 우리는 그래서 memo를 통해서 이러한 상황을 방지할 수 있다. memo를 React에서 import한 후에 자식컴포넌트를 감싸도록 한다면, 부모의 리렌더링이 일어나는 시점에서 자식의 리렌더링을 막을 수 있는 것이다.
