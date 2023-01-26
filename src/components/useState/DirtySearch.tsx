@@ -19,6 +19,7 @@ const DirtySearch: React.FC = () => {
   }
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
+    //매 검색마다 filteredItems의 값을 바꿔준다.
     setFilteredItems(
       items.filter(item => {item.toLowerCase().includes(value.toLowerCase())})
     );
@@ -31,7 +32,8 @@ const DirtySearch: React.FC = () => {
       <br />
       <br />
       <form onSubmit={onSubmit}>
-        New Item: <input ref={inputRef} type="text"></input>
+        New Item: 
+        <input ref={inputRef} type="text"></input>
         <button type="submit">Add</button>
       </form>
       <h3>Items</h3>

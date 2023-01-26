@@ -1,4 +1,4 @@
-import React, { useReducer, useState, useRef } from 'react';
+import React, { useReducer, useRef } from 'react';
 import styled from 'styled-components';
 import TableElement from './TableElement';
 
@@ -59,9 +59,9 @@ const UseReducer: React.FC = () => {
   //근데 값이 바뀌어야 할때마다 계속 set~~~이걸 해준다? 무척 비효율적이다. 바로 이러한 상황을 방지하고자, useReducer를 사용하는거다. 자, 각설하고 한번 써보도록 하자.
   //useReducer는 dispatch를 통해 상태를 변화시킨다.
   const [users, dispatch] = useReducer(reducer, initialUser);
-  const nameRef = useRef();
-  const ageRef = useRef();
-  const jobRef = useRef();
+  const nameRef = useRef<HTMLInputElement>(null) as any;
+  const ageRef = useRef<HTMLInputElement>(null) as any;
+  const jobRef = useRef<HTMLInputElement>(null) as any;
   const addUser = () => {
     //이렇게 dispatch에 대한 타입과 전달돼야하는 payload값을 정의하자.
     dispatch({

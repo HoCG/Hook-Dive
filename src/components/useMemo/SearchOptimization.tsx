@@ -11,7 +11,6 @@ const SearchOptimization: React.FC = () => {
     })
   }, [items, query]);
 
-
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const value = inputRef.current.value;
