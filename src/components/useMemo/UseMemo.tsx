@@ -9,7 +9,7 @@ type userType = {
   job: string
 }
 
-const UseMemo = () => {
+const UseMemo: React.FC = () => {
   const [users, setUsers] = useState<userType[]>([
     {
       id: 0,
@@ -33,17 +33,12 @@ const UseMemo = () => {
       job: 'programmer'
     }
   ]);
-  const [newUser, setNewUser] = useState<userType>({
-    id: 0,
-    name: '',
-    age: 0,
-    job: ''
-  });
   //주의!! 이렇게 input으로 값의 변화를 계속 인지해야할때는 그냥 useRef를 쓰는게 좋다. 왜냐하면 useState의 값이 변할때마다 계속해서 리렌더링이 일어나기 때문이다.
   //useRef의 경우는 리렌더링이 일어나지도 않기때문에 훨씬 효율적으로 input값을 관리할 수 있다.
-  const nameRef = useRef();
-  const ageRef = useRef();
-  const jobRef = useRef();
+  //근데 이자식... 타입스크립트로 사용할때 조금 까다롭다. DOM에 접근해야하는 상황에서는 useRef<HTMLInputElement>(null) as any; 값을 정의할때는 useRef<number>(0);로 사용하자.
+  const nameRef = useRef<HTMLInputElement>(null) as any;
+  const ageRef = useRef<HTMLInputElement>(null) as any;
+  const jobRef = useRef<HTMLInputElement>(null) as any;
   //이렇게 useMemo를 적용시켜서 값을 계산해야하는 상황을 한정적으로 users라는 값이 변할때에만 바뀌도록 설정할 수 있다.
   const userCount = useMemo(() => users.length, [users]);
   const addUser = () => {

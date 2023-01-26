@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 
 const WhyNeedUseMemo = () => {
   /*
@@ -26,11 +26,9 @@ const WhyNeedUseMemo = () => {
   const [ age, setAge ] = useState('');
   const [ darkMode, setDarkMode ] = useState(false);
   const person = useMemo(() => {
-    return  {
-      age, 
-      name
-    }
-  });
+    return { age, name }
+    }, [age, name]
+  );
   useEffect(() => {
     console.log(person);
   }, [person]);
