@@ -8,10 +8,11 @@ import UseRef from './components/useRef/UseRef';
 import UseRefForSetData from './components/useRef/UseRefForSetData';
 import UseInterval from './components/useRef/UseInterval';
 import ForwardRef from './components/useRef/forwardRef/ForwardRef';
+import ForwardPractice from './components/useRef/forwardRef/ForwardPractice';
 const App: React.FC = () => {
   return (
     <div>
-      <ForwardRef></ForwardRef>
+      <ForwardPractice></ForwardPractice>
     </div>
   )
 }
