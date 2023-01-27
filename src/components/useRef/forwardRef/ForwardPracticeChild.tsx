@@ -1,9 +1,12 @@
-import { ForwardedRef, forwardRef } from 'react';
+import { ForwardedRef, forwardRef, useEffect } from 'react';
 import styled from 'styled-components';
 
 
 //forwardRef를 사용할때에는 이렇게 앞에 {}를 작성해주자구.
 const ForwardPracticeChild = ({}, ref: ForwardedRef<HTMLDivElement>) => {
+  useEffect(() => {
+    console.log("차일드 리렌더링");
+  });
   return (
     <ForwardPracticeChildContainer ref={ref}>
     </ForwardPracticeChildContainer>
