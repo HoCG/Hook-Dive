@@ -1,5 +1,4 @@
 import { createContext } from "react";
-import UseEffect from './components/useEffect/UseEffect';
 import Memo from './components/useMemo/Memo';
 import UseMemo from './components/useMemo/UseMemo';
 import UseReducer from './components/useReducer/UseReducer';
@@ -11,6 +10,7 @@ import UseInterval from './components/useRef/UseInterval';
 import ForwardRef from './components/useRef/forwardRef/ForwardRef';
 import ForwardPractice from './components/useRef/forwardRef/ForwardPractice';
 import UseContext from "./components/useContext/UseContext";
+import UseEffectForLayout from "./components/useLayoutEffect/UseEffectForLayout";
 
 type State = {
   id: number,
@@ -30,9 +30,7 @@ const App = () => {
   } 
   return (
     <AppContext.Provider value={user}>
-      <div>
-        <UseContext></UseContext>
-      </div>
+      <UseEffectForLayout></UseEffectForLayout>
     </AppContext.Provider>
   )
 }
