@@ -7,10 +7,11 @@ import UseState from './components/useState/UseState';
 import UseRef from './components/useRef/UseRef';
 import UseRefForSetData from './components/useRef/UseRefForSetData';
 import UseInterval from './components/useRef/UseInterval';
+import ForwardRef from './components/useRef/forwardRef/ForwardRef';
 const App: React.FC = () => {
   return (
     <div>
-      <UseInterval></UseInterval>
+      <ForwardRef></ForwardRef>
     </div>
   )
 }
