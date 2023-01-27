@@ -85,6 +85,17 @@ useRef는 다른방식으로도 사용할 수 있다. 바로 DOM 접근을 해�
         
 이 두개가 무슨차이일까? 값을 가지기도하고 화면에 즉시 변화된 값이 반영되는 것도 아닌데... 바로 렌더링 시점에서 확연한 차이가 들어나는데 저렇게 userData를 선언하면 리렌더링 시점에서 다시 선언되게 된다. 그러나 userRefData같이 선언시 리렌더링이 발생해도 상태를 계속 저장한다는 차이가 있다!
 
+## forwardRef
+내친김에 forwardRef까지 다뤄봤다. 일단 상황을 하나 묘사해보겠다. 우리가 커스텀 된 input을 하나 만들었고 이를 컴포넌트화해서 관리한다고 치자. 그럼 이 컴포넌트화 된 input의 ref값을 접근해서 input에 들어간 value를 가지고 온다고 가정했을때 어떻게 해야 접근해서 값을 가져올 수 있을까? ref를 props로 넘긴다? 그럼 그 ref값이 변경될때마다 리렌더링이 발생하게 될테니
+ref를 사용하는 의미가 퇴색된다. 바로 이러한 상황에서 forwardRef를 사용한다. 먼저 부모에 UseRef를 하나 정의해두자. 그 다음 forwardRef를 자식컴포넌트에 
+
+    export default forwardRef<HTMLInputElement, propsType>(ChildComponent);
+    
+이런식으로 감싸주자. 마지막으로 
+
+    const ChildComponent = ({}, ref: ForwardedRef<HTMLInputElement>) => 
+    
+자식의 매개변수를 이런식으로 정의해주면 끝~ 이렇게 하면 자연스럽게 자식의 Ref를 조작하는게 가능해진다. 
 ## useContext
 
 ## useLayoutEffect
