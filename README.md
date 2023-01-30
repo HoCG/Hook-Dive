@@ -134,9 +134,21 @@ useImperativeHandle은 forwardRef를 사용시 적용가능한 훅이다. 자식
 
 ## useDebugValue
 
+## useInsertionEffect
+
+## useId
+
+## useDeferredValue
+
+## useTransition
+
 ## useQuery
 
+## useQueries
+
 ## useMutation
+
+## useInfiniteQuery
 
 ## customHook
 
