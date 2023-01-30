@@ -76,7 +76,7 @@ useCallback도 useMemo와 비슷하다. 특정값이 변한다면 useCallback내
 
 useRef는 가변해야하는 값을 계속 담고 있어야할때 사용하면 유용하다. 대표적인 예시는 바로 setInterval을 사용할때이다. useEffect내에 setInterval을 쓰고 setState를 통해 상태를 계속 변경해주길 원한다고 치자. 허나 이러한 방식은 정상적으로 동작하지 않는다. 이유가 뭘까? useEffect가 계속해서 state의 초기값을 기억하고 있기 때문이다. 따라서 이러한 경우에 useRef를 사용해 값이 변하고 있다는걸 인지해주게 설정하면 setInterval을 정상동작 시킬 수 있다.
 
-useRef는 다른방식으로도 사용할 수 있다. 바로 DOM 접근을 해야할때인데 예시를 들어보겠다. input값을 change를 통해 setState의 동작을 기반으로 감지하는건 매우매우 비효율적인 행동이다. 계속해서 리렌더링을 반복해서 애플리케이션 성능을 저하시킬 수 있다. 이러한 단점을 극복하고자 useRef를 사용한다. useRef를 사용해 DOM접근시 리렌더링을 하지 않기에 이렇게 DOM내부에 value가 변할때 유용하다. 
+useRef는 다른방식으로도 사용할 수 있다. 바로 DOM 접근을 해야할때인데 예시를 들어보겠다. input값을 change를 통해 setState의 동작을 기반으로 감지하는건 매우매우 비효율적인 행동이다. 계속해서 리렌더링을 반복해서 애플리케이션 성능을 저하시킬 수 있다. 이러한 단점을 극복하고자 useRef를 사용한다. useRef를 사용해 DOM접근시 리렌더링을 하지 않기에 이렇게 DOM내부에 value가 변할때 유용하다. 문제가 있다. useRef를 통해 DOM에 접근하는건 근본적으로 getElementById와 같은 접근방법과 동일하다. 잘 알겠지만 getElementById는 트리 탐색을 통해 DOM에 접근하는 방식이기 때문에 자주 사용하면 애플리케이션 성능저하를 발생시킬 수 있다. 따라서 useRef가 마냥 좋은건 아니라는 것.
 
 혹은 리렌더링을 발생시키지 않는 변수를 만들어야 할 때 사용하면 유용하다. 변수를 선언할시에 useState를 사용한다면 값이 변할때마다 리렌더링을 하는데 useRef는 리렌더링이 발생하지 않기때문에 화면최적화를 할 수 있다. 이때 우리는 한가지 의문을 가질 수 있다.
 
@@ -86,6 +86,7 @@ useRef는 다른방식으로도 사용할 수 있다. 바로 DOM 접근을 해�
 이 두개가 무슨차이일까? 값을 가지기도하고 화면에 즉시 변화된 값이 반영되는 것도 아닌데... 바로 렌더링 시점에서 확연한 차이가 들어나는데 저렇게 userData를 선언하면 리렌더링 시점에서 다시 선언되게 된다. 그러나 userRefData같이 선언시 리렌더링이 발생해도 상태를 계속 저장한다는 차이가 있다!
 
 ## forwardRef
+
 내친김에 forwardRef까지 다뤄봤다. 일단 상황을 하나 묘사해보겠다. 우리가 커스텀 된 input을 하나 만들었고 이를 컴포넌트화해서 관리한다고 치자. 그럼 이 컴포넌트화 된 input의 ref값을 접근해서 input에 들어간 value를 가지고 온다고 가정했을때 어떻게 해야 접근해서 값을 가져올 수 있을까? ref를 props로 넘긴다? 그럼 그 ref값이 변경될때마다 리렌더링이 발생하게 될테니
 ref를 사용하는 의미가 퇴색된다. 바로 이러한 상황에서 forwardRef를 사용한다. 먼저 부모에 UseRef를 하나 정의해두자. 그 다음 forwardRef를 자식컴포넌트에 
 
@@ -96,6 +97,26 @@ ref를 사용하는 의미가 퇴색된다. 바로 이러한 상황에서 forwar
     const ChildComponent = ({}, ref: ForwardedRef<HTMLInputElement>) => 
     
 자식의 매개변수를 이런식으로 정의해주면 끝~ 이렇게 하면 자연스럽게 자식의 Ref를 조작하는게 가능해진다. 여기서 재밌는건 useRef와 동일하게 forwardRef도 리렌더링을 발생시키지 않는다는 엄청난 장점을 가지고있다!!! 이게 제일 신기했다. 자식컴포넌트가 받은 ref는 그야말로 스테이트랑은 완전히 별개의 개념이구나를 느꼈고 캡슐화된 여러 자식의 스타일을 변경해야 할때 이렇게 ref를 활용하면 엄청난 강점을 가지겠구나라고 느끼는 시간이였다.
+
+## callbackRef
+
+우리가 만약에 컴포넌트가 실행되자마자 useEffect를 통해 useRef로 DOM을 접근한다고 치자. 
+
+      useEffect(() => {
+        if (childRef.current) {
+          childRef.current.style.backgroundColor = "black";
+        }
+      });
+
+근데 솔직히 좀 불편하고 이상하다. useRef랑 useEffect라는 훅을 두개나 사용해야하는데 너무 불편하게 짝이없다. 이럴때 어떻게해야 좀 더 간결하게 코드작성이 가능할까?
+
+      const childRef = useCallback((node: HTMLElement | null) => {
+        if (node !== null) {
+          node.style.backgroundColor = "black";
+        }
+      }, [])
+
+바로 이렇게 useCallback을 활용하는 것! 지금에야 아주 간단한 예제로 작성해서 그렇지만 활용방법은 아주 많을 것으로 보인다. 대표적인 예시는 api를 통해 items를 가지고 오는 경우이다. 이때 가지고 온 글자 길이 따라 화면에서 렌더링을 달리해야 한다면, 그러니까 ref를 통해 div의 길이가 넘어갔는지 안넘어갔는지를 체크해야한다면, 콜백Ref를 활용해보자. 
 
 ## useContext
 
