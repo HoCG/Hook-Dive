@@ -7,6 +7,7 @@ type userType = {
   phoneNumber: string,
 }
 
+//useImperativeHandle을 통해 정의될 함수들의 타입을 정의한다.
 export type refType = {
   setUser: (userName: string, phoneNumber: string) => void,
   setDivStyle: (width: string, height: string, color: string) => void,
@@ -21,6 +22,7 @@ const initUser = {
 const ImperativeChild = ({}: any, ref: React.Ref<refType> | undefined) => {
   const [user, setUser] = useState<userType>(initUser);
   const divRef = useRef<HTMLDivElement>(null);
+  //아래와 같이 함수들을 정의.
   useImperativeHandle(ref, () => ({
     setUser (userName: string, phoneNumber: string) {
       setUser({

@@ -2,10 +2,12 @@ import React, { useRef } from 'react';
 import ImperativeChild, { refType } from './ImperativeChild';
 
 const UseImperativeHandle = () => {
+  //사용할때 정의해둔 ref타입을 가지고온 후 useRef를 선언한다.
   const childDivRef = useRef<refType>(null);
   const handleOrangeButton = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     //다음과 같이 자식 컴포넌트의 함수에 접근하는게 가능해진다.
+    //부모에서 childComponent의 DOM을 직접 변경하는게 아닌, 자식에서 DOM을 변경하는 방식이므로 좀 더 기능구분을 확실하게 해줄 수 있다.
     childDivRef.current?.setDivStyle("30rem", "30rem", "orange");
   };
   const handlePinkButton = (e: React.MouseEvent<HTMLButtonElement>) => {

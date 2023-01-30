@@ -12,6 +12,8 @@ import ForwardPractice from './components/useRef/forwardRef/ForwardPractice';
 import UseContext from "./components/useContext/UseContext";
 import UseEffectForLayout from "./components/useLayoutEffect/UseEffectForLayout";
 import UseImperativeHandle from "./components/useImperativeHandle/UseImperativeHandle";
+import UseEffectDelay from "./components/useRef/callbackRef/useEffectDelay";
+import CallBackRef from "./components/useRef/callbackRef/CallBackRef";
 
 type State = {
   id: number,
@@ -31,7 +33,8 @@ const App = () => {
   } 
   return (
     <AppContext.Provider value={user}>
-      <UseImperativeHandle></UseImperativeHandle>
+      <UseEffectDelay></UseEffectDelay>
+      <CallBackRef></CallBackRef>
     </AppContext.Provider>
   )
 }
