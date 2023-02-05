@@ -14,6 +14,7 @@ import UseEffectForLayout from "./components/useLayoutEffect/UseEffectForLayout"
 import UseImperativeHandle from "./components/useImperativeHandle/UseImperativeHandle";
 import UseEffectDelay from "./components/useRef/callbackRef/useEffectDelay";
 import CallBackRef from "./components/useRef/callbackRef/CallBackRef";
+import UseId from "./components/useId/UseId";
 
 type State = {
   id: number,
@@ -33,8 +34,7 @@ const App = () => {
   } 
   return (
     <AppContext.Provider value={user}>
-      <UseEffectDelay></UseEffectDelay>
-      <CallBackRef></CallBackRef>
+      <UseId></UseId>
     </AppContext.Provider>
   )
 }
