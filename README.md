@@ -140,6 +140,8 @@ useImperativeHandle은 forwardRef를 사용시 적용가능한 훅이다. 자식
 
 ## useId
 
+useId의 경우 고유한 Id값을 만들어야 할때 유용하게 사용가능하다. id값을 어떻게 설정해야할지 고민하기보단, 이렇게 useId를 사용해보자. 간단하게 Id값이 생긴다! 좀 더 서버 친화적인 id값을 기반으로 유저 고유의 id값을 가지고있어야 한다거나 컴포넌트의 key값을 넣어줘야하는 상황에서 사용하면 좋겠다는 생각이 들었다.
+
 ## useDeferredValue
 
 ## useTransition
