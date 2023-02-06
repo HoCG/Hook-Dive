@@ -165,18 +165,21 @@ react-query는 엄밀히 말해서 리액트에서 제공하는 순수한 훅이
 
 대신에 사용할때에는 배열에 접근하는 방식으로 각각의 api에 대한 처리를 사용해야한다. 예를 들어서 아래와 같이 useQueries를 선언했다면
 
-  const queriesData = useQueries([
-    {
-      queryKey: ["todo"],
-      queryFn: () => getTodos()
-    },
-    {
-      queryKey: ["joke", getData],
-      queryFn: () => getJokes()
-    }
-  ]);
 
-queriesData.forEach(api => {})와 같은 형태로 접근해서 api.data.~~~로 응답정보를 확인해야한다는 사실~
+    const queriesData = useQueries([
+        {
+            queryKey: ["todo"],
+            queryFn: () => getTodos()
+        },
+        {
+            queryKey: ["joke", getData],
+            queryFn: () => getJokes()
+        }
+    ]);
+
+
+queriesData.forEach(api => {})와 같은 형태로 접근해서 api.data.~로 응답정보를 확인해야한다는 사실~
+
 ## useMutation
 
 ## useInfiniteQuery
