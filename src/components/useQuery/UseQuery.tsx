@@ -21,7 +21,7 @@ type errorType = {
 const UseQuery = () => {
   //얼핏보면 isFetching, isLoading 이 두개가 똑같다고 생각할 수 있지만 차이점이 있다. isFetching은 데이터를 가지고오는 중에 사용되는 것이고, isLoading은 페이지가 불러오는 과정에서 사용되는 것이다.
   //그냥 새로고침했을때와 데이터를 다시 가지고오는 상황을 비교해보면 손쉽게 알 수 있는 차이점이다.
-  const { data, isError, error, isFetching, isSuccess, isLoading } = useQuery("joke", getJokes, {
+  const { data, isError, isFetching, isSuccess, isLoading } = useQuery("joke", getJokes, {
     refetchOnWindowFocus: false, // react-query는 사용자가 사용하는 윈도우가 다른 곳을 갔다가 다시 화면으로 돌아오면 이 함수를 재실행한다. 그 재실행 여부 옵션이다.
     retry: 0, // 실패시 재호출 몇번 할지
     onSuccess: data => {

@@ -14,6 +14,7 @@ import UseEffectForLayout from "./components/useLayoutEffect/UseEffectForLayout"
 import UseImperativeHandle from "./components/useImperativeHandle/UseImperativeHandle";
 import CallBackRef from "./components/useRef/callbackRef/CallBackRef";
 import UseQuery from "./components/useQuery/UseQuery";
+import UseQueryKey from "./components/useQuery/UseQueryKey";
 import UseId from "./components/useId/UseId";
 
 type State = {
@@ -34,7 +35,7 @@ const App = () => {
   } 
   return (
     <AppContext.Provider value={user}>
-      <UseQuery></UseQuery>
+      <UseQueryKey></UseQueryKey>
     </AppContext.Provider>
   )
 }
