@@ -17,6 +17,7 @@ import UseId from "./components/useId/UseId";
 import UseQuery from "./components/useQuery/UseQuery";
 import UseQueryKey from "./components/useQuery/UseQueryKey";
 import UseQueries from "./components/useQueries/UseQueries";
+import UseMutation from "./components/useMutation/UseMutation";
 
 
 type State = {
@@ -37,7 +38,7 @@ const App = () => {
   } 
   return (
     <AppContext.Provider value={user}>
-      <UseQueries></UseQueries>
+      <UseMutation></UseMutation>
     </AppContext.Provider>
   )
 }
