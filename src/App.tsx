@@ -18,6 +18,7 @@ import UseQuery from "./components/useQuery/UseQuery";
 import UseQueryKey from "./components/useQuery/UseQueryKey";
 import UseQueries from "./components/useQueries/UseQueries";
 import UseMutation from "./components/useMutation/UseMutation";
+import CustomHookUseComponent from "./components/customHook/CustomHookUseComponent";
 
 
 type State = {
@@ -38,7 +39,7 @@ const App = () => {
   } 
   return (
     <AppContext.Provider value={user}>
-      <UseMutation></UseMutation>
+      <CustomHookUseComponent></CustomHookUseComponent>
     </AppContext.Provider>
   )
 }
