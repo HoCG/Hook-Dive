@@ -206,7 +206,7 @@ GET을 제외한 다른 HTTP 메소드로 api를 호출해야할때 쓰는 훅�
       });
 
 
-와 이거 진짜 대박이였다... POST를 통한 todo를 등록할시 todo Key에 해당하는 데이터가 변했다는걸 알려주고 todo에 걸려있는 useQuery를 다시 실행한다! 감동 그자체.... 이로인해 리액트 쿼리는 나에게 신이 되었다. 그리고 한편으로 resux-thunk와는 이별이다. 잘가 redux-thunk. 세이 굿바이
+와 이거 진짜 대박이였다... POST를 통한 todo를 등록할시 todo Key에 해당하는 데이터가 변했다는걸 알려주고 todo에 걸려있는 useQuery를 다시 실행한다! 감동 그자체.... 이로인해 리액트 쿼리는 나에게 신이 되었다. 그리고 한편으로 redux-thunk와는 이별이다. 잘가 redux-thunk. 세이 굿바이
 
 ## useInfiniteQuery
 
