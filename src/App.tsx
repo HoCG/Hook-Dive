@@ -12,8 +12,8 @@ import ForwardPractice from './components/useRef/forwardRef/ForwardPractice';
 import UseContext from "./components/useContext/UseContext";
 import UseEffectForLayout from "./components/useLayoutEffect/UseEffectForLayout";
 import UseImperativeHandle from "./components/useImperativeHandle/UseImperativeHandle";
-import UseEffectDelay from "./components/useRef/callbackRef/useEffectDelay";
 import CallBackRef from "./components/useRef/callbackRef/CallBackRef";
+import UseQuery from "./components/useQuery/UseQuery";
 import UseId from "./components/useId/UseId";
 
 type State = {
@@ -34,7 +34,7 @@ const App = () => {
   } 
   return (
     <AppContext.Provider value={user}>
-      <UseId></UseId>
+      <UseQuery></UseQuery>
     </AppContext.Provider>
   )
 }
