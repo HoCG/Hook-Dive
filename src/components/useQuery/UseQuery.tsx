@@ -1,4 +1,3 @@
-import React from 'react';
 import { useQuery } from 'react-query';
 import { getJokes } from '../../apis/api/joke';
 /*
