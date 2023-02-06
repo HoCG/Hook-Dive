@@ -161,6 +161,22 @@ react-query는 엄밀히 말해서 리액트에서 제공하는 순수한 훅이
 
 ## useQueries
 
+간단하게 설명하자면 useQueries가 여러번 사용될때 쓰는녀석. 그야말로 닉값 제대로하는 훅이라고 할수있다.(...) useQueries내에 api호출을 여러개 작성해두면 작성한 api에 대한 작업을 수행한다. 그것도 아주 깔끔하게~
+
+대신에 사용할때에는 배열에 접근하는 방식으로 각각의 api에 대한 처리를 사용해야한다. 예를 들어서 아래와 같이 useQueries를 선언했다면
+
+  const queriesData = useQueries([
+    {
+      queryKey: ["todo"],
+      queryFn: () => getTodos()
+    },
+    {
+      queryKey: ["joke", getData],
+      queryFn: () => getJokes()
+    }
+  ]);
+
+queriesData.forEach(api => {})와 같은 형태로 접근해서 api.data.~~~로 응답정보를 확인해야한다는 사실~
 ## useMutation
 
 ## useInfiniteQuery
