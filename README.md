@@ -178,7 +178,7 @@ react-query는 엄밀히 말해서 리액트에서 제공하는 순수한 훅이
     ]);
 
 
-queriesData.forEach(api => {})와 같은 형태로 접근해서 api.data.~로 응답정보를 확인해야한다는 사실~
+queriesData.forEach(api => {})로 접근해서 api.data의 형태로 응답정보를 확인해야한다는 사실~
 
 ## useMutation
 
