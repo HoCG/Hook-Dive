@@ -182,6 +182,32 @@ queriesData.forEach(api => {})로 접근해서 api.data의 형태로 응답정�
 
 ## useMutation
 
+GET을 제외한 다른 HTTP 메소드로 api를 호출해야할때 쓰는 훅이다. 간단하게 요약하자면 이렇고, useQuery와 비슷하게 성공했을때 실패했을때에 대한 분기를 둘 주 있다는 장점이 있다. 나는 이번에 훅다이브를 하기전까지만 하더라도 리액트 쿼리에 회의적이였었는데 그 결정적인 원인제공이 바로 useMutation이였다. "아니, Post를 했는데 다시 데이터를 Get하려면 어케 해야하는거야?"라는 점에서 엄청 해맸었는데 그 궁금증을 명쾌하게 해결했다. 바로 아래와 같이 useQueryClient를 활용해서 invalidateQueries를 사용하는것!!!
+
+
+  const queryClient = useQueryClient();
+  const { data } = useQuery(["todo"], getTodos, {
+    refetchOnWindowFocus: false, 
+    retry: 0,
+    onSuccess: data => {
+      console.log(data);
+    },
+    onError: (e: errorType) => {
+      console.log(e.message);
+    }
+  });
+  const todoMutation = useMutation(() => postTodos({
+    title: titleRef.current?.value,
+    description: descriptionRef.current?.value
+  } as postTodoType), {
+    onSuccess: () => {
+      queryClient.invalidateQueries("todo");
+    }
+  });
+
+
+와 이거 진짜 대박이였다... POST를 통한 todo를 등록할시 todo Key에 해당하는 데이터가 변했다는걸 알려주고 todo에 걸려있는 useQuery를 다시 실행한다! 감동 그자체.... 이로인해 리액트 쿼리는 나에게 신이 되었다. 그리고 한편으로 resux-thunk와는 이별이다. 잘가 redux-thunk. 세이 
+
 ## useInfiniteQuery
 
 ## customHook
