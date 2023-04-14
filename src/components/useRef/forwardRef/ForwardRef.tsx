@@ -11,7 +11,6 @@ const ForwardRef: React.FC = () => {
   const handleOnClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     setReRender(!reRender);
     e.preventDefault();
-    
   };
   useEffect(() => {
     console.log("리렌더링!", customRef.current?.value);

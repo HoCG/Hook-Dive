@@ -1,4 +1,4 @@
-import React, { ForwardedRef, forwardRef, useImperativeHandle, useRef, useState } from 'react';
+import React, { forwardRef, useImperativeHandle, useRef, useState } from 'react';
 import styled from 'styled-components';
 
 type userType = {
@@ -11,7 +11,7 @@ type userType = {
 export type refType = {
   setUser: (userName: string, phoneNumber: string) => void,
   setDivStyle: (width: string, height: string, color: string) => void,
-} | null
+}
 
 const initUser = {
   id: '',

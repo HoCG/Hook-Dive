@@ -16,7 +16,7 @@ useState의 setState를 함수형으로 선언하는것과 그냥 선언하는�
 -함수형으로 선언하면 setState가 동기적으로 실행된다.
 
 ## useEffect
-스테이트의 값이 변할때마다, 그리고 부모로 부터 넘겨받은 props값이 변경될 때마다 useEffect가 동작하게 된다. 그리고 화면이 마운트, 언마운트 되는 시점에서 실행된다. useEffect뒤에 배열을 넣어줄 수 가 있는데 빈 배열의 경우 마운트가 되는 시점에서, 배열안에 값을 넣으면 넣은 값이 변경되는 시점에서 useEffect가 실행된다. useEffect안에 return을 두는 경우는 unMount의 효과가 있다. unMount기능활용 예시는 인터벌이 있다. 인터벌을 계속 지정해둔 경우 clean을 해줄때까지 동작을 하게된다. 이런 문제를 방지하고자 unMount시에 clean을 할 수 있도록 해준다.
+스테이트의 값이 변할때마다, 그리고 부모로부터 넘겨받은 props값이 변경될 때마다 useEffect가 동작하게 된다. 그리고 화면이 마운트, 언마운트 되는 시점에서 실행된다. useEffect뒤에 배열을 넣어줄 수 가 있는데 빈 배열의 경우 마운트가 되는 시점에서, 배열안에 값을 넣으면 넣은 값이 변경되는 시점에서 useEffect가 실행된다. useEffect안에 return을 두는 경우는 unMount의 효과가 있다. unMount기능활용 예시는 인터벌이 있다. 인터벌을 계속 지정해둔 경우 clean을 해줄때까지 동작을 하게된다. 이런 문제를 방지하고자 unMount시에 clean을 할 수 있도록 해준다.
 
 ## useReducer
 setState를 통해 상태 수정시 복잡한 상태변화를 반복적으로 해야 한다면 useReducer를 사용하는게 좋다. 물론 setState가 정의된 영역의 함수화를 통해 문제를 해결할 수 있지만 state를 위해서 따로 함수를 만들어서 state관리를 돕는다? 그건 합리적이지 못하다. 이러한 이유로 우리는 useReducer라는 훅을 사용할 것이다. 정말 쉽게 useReducer를 해보자면 로컬 state 전용 redux다. useReducer와 redux의 코드는 매우 비슷하게 생겼는데 각 action에 따른 switch case를 작성하고 그에따른 리턴 값을 정의한다. 이렇게 다양한 경우를 고려해서 case를 나눌 수 있다는게 바로 useState와의 차별점이다. create, update, delete, read 모두 구현이 가능하다는 것이다! 이로인해 코드를 좀 더 직관적이게 만들어 줄 수 있고 이게 내겐 굉장한 매력으로 와 닿았다!
@@ -71,6 +71,9 @@ useMemo가 리렌더링으로부터 자유롭다는 특성은 활용요소가 �
 ## useCallback
 
 useCallback도 useMemo와 비슷하다. 특정값이 변한다면 useCallback내부에 선언해둔 함수가 실행되도록 할 수 있다. useCallback의 경우는 묵직한 api통신의 경우에 사용하는게 이상적이라고 생각한다. api통신을 useEffect내에 호출하게 된다면 매 렌더링 시점마다 api통신 함수가 동작하게 될것이다. 이는 애플리케이션 성능을 떨어트리는 결정적 원인이기에 useCallback을 통해 callback뒤에 배열내부에 정의한 값이 바뀌는게 아니라면 호출되지 않도록 하는 것이다. 단, useCallback 역시 useMemo와 동일한 문제점을 가지고있기 때문에 소프트웨어의 성능을 보장할 수 있는 상황에서만 사용하길 바란다.
+
++ 추가 >> useCallback을 가장 이상적으로 쓰는 상황은 다음과 같다. memo를 통해 컴포넌트 최적화를 해놓은 상태에서 특정 함수를 props로 넘긴다면, 리렌더링이 발생할때 props로 넘겨준 함수가 달라졌다고 인식한다. 이로인해 memo로 감싸진 컴포넌트가 리렌더링이 된다. 이를 방지하기 위해 useCallback을 사용하는것이 가장 이상적이라고 할 수 있다.
+
 
 ## useRef
 

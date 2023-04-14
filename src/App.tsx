@@ -3,6 +3,7 @@ import Memo from './components/useMemo/Memo';
 import UseMemo from './components/useMemo/UseMemo';
 import UseReducer from './components/useReducer/UseReducer';
 import UseCallback from './components/useCallback/UseCallback';
+import UseEffect from "./components/useEffect/UseEffect";
 import UseState from './components/useState/UseState';
 import UseRef from './components/useRef/UseRef';
 import UseRefForSetData from './components/useRef/UseRefForSetData';
@@ -39,7 +40,7 @@ const App = () => {
   } 
   return (
     <AppContext.Provider value={user}>
-      <CustomHookUseComponent></CustomHookUseComponent>
+      <UseEffect></UseEffect>
     </AppContext.Provider>
   )
 }
