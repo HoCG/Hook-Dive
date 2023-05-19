@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { useTodoQuery } from './UseTodoQuery';
+import { useTodoQuery } from './useTodoQuery';
 
 const InputPart = (() => {
   const titleRef = useRef<HTMLInputElement>(null);

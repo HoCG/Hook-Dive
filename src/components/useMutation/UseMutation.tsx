@@ -24,6 +24,7 @@ const UseMutation = () => {
   const descriptionRef = useRef<HTMLTextAreaElement>(null);
   const queryClient = useQueryClient();
   //데이터 GET에대한 리액트 쿼리 훅을 선언해둔다.
+  //음... 이때 쿼리키를 constants폴더에 넣고 관리해보는건 어떨까?
   const { data } = useQuery(["todo"], getTodos, {
     refetchOnWindowFocus: false, // react-query는 사용자가 사용하는 윈도우가 다른 곳을 갔다가 다시 화면으로 돌아오면 이 함수를 재실행한다. 그 재실행 여부 옵션이다.
     retry: 0, // 실패시 재호출 몇번 할지

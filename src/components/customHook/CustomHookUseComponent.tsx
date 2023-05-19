@@ -1,6 +1,6 @@
 import InputPart from './InputPart';
 import ListPart from './ListPart';
-import { useGetTodoQueryData } from './UseTodoQuery';
+import { useGetTodoQueryData } from './useTodoQuery';
 
 type todoType = {
   id: string;

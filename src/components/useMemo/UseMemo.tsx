@@ -40,7 +40,7 @@ const UseMemo: React.FC = () => {
   const ageRef = useRef<HTMLInputElement>(null);
   const jobRef = useRef<HTMLInputElement>(null);
   //이렇게 useMemo를 적용시켜서 값을 계산해야하는 상황을 한정적으로 users라는 값이 변할때에만 바뀌도록 설정할 수 있다.
-  const userCount = useMemo(() => users.length, [users]);
+  const userCount = useMemo<number>(() => users.length, [users]);
   const addUser = () => {
     if(!nameRef.current || !ageRef.current || !jobRef.current ) {
       return;

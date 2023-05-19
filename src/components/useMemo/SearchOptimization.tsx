@@ -5,11 +5,11 @@ const SearchOptimization: React.FC = () => {
   const [query, setQuery] = useState<string>('');
   const inputRef = useRef<HTMLInputElement>(null) as any;
   //useMemo를 활용해 이렇게 검색결과에 대한 최적화를 해줄 수도 있다. state배열을 두개나 정의할 필요가 없으며 리렌더링에 대한 걱정도 줄일 수 있다!
-  const filteredItems = useMemo(() => {
-    return items.filter(item => {
-      return item.toLowerCase().includes(query.toLowerCase())
-    })
-  }, [items, query]);
+  const filteredItems = useMemo(() => 
+    items.filter(item => 
+      item.toLowerCase().includes(query.toLowerCase())
+    )
+  , [items, query]);
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
